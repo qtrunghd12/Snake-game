@@ -36,7 +36,7 @@ class Apple(Drawable):
     def drawable_objects_and_destinations(self):
         return Displayable(
             figures=[{
-                "color": RED,
+                "color": YELLOW,
                 "destination": self.position,
             }],
             images=[]

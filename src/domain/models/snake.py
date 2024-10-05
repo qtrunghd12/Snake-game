@@ -5,10 +5,10 @@ from ..interfaces import Drawable, Displayable, Position, GameKeys
 from ..constants import *
 
 
-DEFAULT_SPEED = 10
-SLOW_START_SPEED = 1
-FAST_SPEED = 20
-LIVES = 5
+DEFAULT_SPEED = 8
+SLOW_START_SPEED = 5
+FAST_SPEED = 13
+LIVES = 3
 
 
 class Snake(Drawable):
@@ -64,17 +64,18 @@ class Snake(Drawable):
     @property
     def drawable_objects_and_destinations(self):
         return Displayable(
-            figures=[],
-            images=[
+            figures=[
                 {
-                    "source": self.image_path,
+                    "color": (255, 0, 0),  # Màu đỏ (RGB)
                     "destination": Position(
                         coordinates=(elem[0] * CELL_SIZE, elem[1] * CELL_SIZE),
                         dimensions=(CELL_SIZE, CELL_SIZE),
                     )
                 }
                 for elem in self.body
-            ])
+            ],
+            images=[]  # Không sử dụng ảnh
+        )
 
     @staticmethod
     def start_body_coordinates():

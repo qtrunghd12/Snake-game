@@ -1,5 +1,4 @@
 import sys
-
 from adapters.gui import snake_gui
 from domain.interfaces import GameEventTypes, Result, Color
 from domain.constants import (
@@ -19,9 +18,8 @@ from domain.models.user import GameUser
 from domain.models.walls import Walls, WallsType
 from adapters.repository import save_result
 
-
 class SnakeGame:
-    def __init__(self, player: GameUser):
+    def __init__(self, player: GameUser, difficulty: str):  # Thêm tham số độ khó
         self.game_over = False
         snake_gui.init_screen()
         self.player = player
@@ -32,7 +30,13 @@ class SnakeGame:
 
         snake_gui.set_caption(f'Snake-{player.get_name()}')
 
-        self.walls_list = Walls(WallsType.EASY_PARALLEL).get_list(CELL_SIZE)  # TODO: let the user choose what type of obstacles he wants
+        # Chọn tường dựa trên độ khó
+        if difficulty == 'Dễ':
+            self.walls_list = Walls(WallsType.EASY_PARALLEL).get_list(CELL_SIZE)
+        elif difficulty == 'Trung Bình':
+            self.walls_list = Walls(WallsType.ROOM_FRAME).get_list(CELL_SIZE)
+        else:  # 'Khó'
+            self.walls_list = Walls(WallsType.COMPLEX).get_list(CELL_SIZE)
 
     @staticmethod
     def _print_text(text: str, color: Color, font=None, textpos=None):
@@ -40,22 +44,22 @@ class SnakeGame:
         snake_gui.update_display_to_screen()
 
     def _show_status_text(self):
-        text = "Số Táo: {}  Số Điểm: {}  Số Mạng còn lại: {}  ".format(self._apple.count, self._points, "♥" * self._snake.lives)
-        snake_gui.render_text(text, RED, SCORE_FONT, (10, 10))
+        text = "Số Táo: {}  Số Điểm: {}             Số Mạng còn lại: {}  ".format(self._apple.count, self._points, "♥" * self._snake.lives)
+        snake_gui.render_text(text, WHITE, SCORE_FONT, (10, 10))
 
     def _draw_walls(self):
         for wall in self.walls_list:
-            snake_gui.draw_rectangle(wall, BLUE)
+            snake_gui.draw_rectangle(wall, ((205,196,170)))
 
     def _countdown(self):
         while self._seconds_before_start > 0:
-            self._print_text("{}".format(self._seconds_before_start), BLUE, LARGE_FONT)
+            self._print_text("{}".format(self._seconds_before_start), RED, LARGE_FONT)
             snake_gui.wait(1000)
-            snake_gui.fill_with(BLACK)
+            snake_gui.fill_with((0, 0, 0))
             self._seconds_before_start -= 1
 
-    def _draw_game_objects(self):  # TODO: add images preloading
-        snake_gui.fill_with(BLACK)
+    def _draw_game_objects(self):
+        snake_gui.fill_with((19, 138, 21))  # Thiết lập màu nền xanh lá
         self._show_status_text()
         self._draw_walls()
         objects = [self._snake, self._apple]
