@@ -106,7 +106,7 @@ class Snake(Drawable):
     def start_new_live(self):
         self.lives -= 1
         self.body = self.start_body_coordinates()
-        self.turn_up()
+        self.turn_right() 
 
     def hit_itself(self) -> bool:
         return self.body[0] in self.body[1:]
