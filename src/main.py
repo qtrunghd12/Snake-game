@@ -29,11 +29,11 @@ class NewUserGreeting(FloatLayout):
 
         grid = GridLayout(cols=1, size_hint=(0.7, 0.8), pos_hint={"center_x": 0.5, "center_y": 0.5})
 
-        grid.add_widget(Image(source="images/SnakeLogo.png", size_hint=(20, 2)))
+        grid.add_widget(Image(source="images/Logo1.png", size_hint=(35, 4)))
 
         self.label = Label(
             text="Nhập Tên: ",
-            font_size=40,
+            font_size=30,
             color="#228B22",
         )
         grid.add_widget(self.label)
