@@ -24,7 +24,7 @@ class Walls:
             Position(coordinates=(0, 0), dimensions=(size, GAME_SCREEN_HEIGHT)),  # tường bên trái
         ]
         complex_walls = [   # Tạo một cấu trúc tường phức tạp hơn
-            Position(coordinates=(GAME_SCREEN_WIDTH // 2, 0), dimensions=(size, GAME_SCREEN_HEIGHT // 2)),  # tường dọc ở giữa
+            Position(coordinates=(GAME_SCREEN_WIDTH // 2, 0), dimensions=(size, GAME_SCREEN_HEIGHT // 2.3)),  # tường dọc ở giữa
             Position(coordinates=(GAME_SCREEN_WIDTH // 4, GAME_SCREEN_HEIGHT // 4), dimensions=(size, GAME_SCREEN_HEIGHT // 2)),  # tường ở một vị trí khác
             Position(coordinates=(3 * GAME_SCREEN_WIDTH // 4, GAME_SCREEN_HEIGHT // 4), dimensions=(size, GAME_SCREEN_HEIGHT // 2)),  # tường ở vị trí đối diện
         ]
