@@ -15,11 +15,11 @@ class Walls:
 
     def get_list(self, size) -> List[Position]:
         """Tạo danh sách các tọa độ tường"""
-        horizontal_walls = [   # tường ngang trên dưới
+        horizontal_walls = [
             Position(coordinates=(0, 0), dimensions=(GAME_SCREEN_WIDTH, size)),
             Position(coordinates=(0, GAME_SCREEN_HEIGHT - size), dimensions=(GAME_SCREEN_WIDTH, size)),
         ]
-        vertical_walls = [   # Tường dọc trái phải
+        vertical_walls = [   # Tường bo 2 bên góc
             Position(coordinates=(GAME_SCREEN_WIDTH - size, 0), dimensions=(size, GAME_SCREEN_HEIGHT)),    # tường bên phải
             Position(coordinates=(0, 0), dimensions=(size, GAME_SCREEN_HEIGHT)),  # tường bên trái
         ]
