@@ -44,7 +44,7 @@ class SnakeGame:
         snake_gui.update_display_to_screen()
 
     def _show_status_text(self):
-        text = "Số Táo: {}  Số Điểm: {}             Số Mạng còn lại: {}  ".format(self._apple.count, self._points, "♥" * self._snake.lives)
+        text = "Số Táo: {}  Số Điểm: {}          Số Mạng còn lại: {}  ".format(self._apple.count, self._points, "♥" * self._snake.lives)
         snake_gui.render_text(text, WHITE, SCORE_FONT, (10, 10))
 
     def _draw_walls(self):
@@ -89,7 +89,7 @@ class SnakeGame:
         touched_apple = snake_gui.rectangles_collide(self._snake.head_position, self._apple.position)
         if touched_apple:
             self._increase_points(self._apple.size)
-            self._apple.set_random_position()
+            self._apple.set_random_position(self.walls_list)
             Apple.count += 1
         else:
             self._snake.remove_tail()
@@ -97,7 +97,7 @@ class SnakeGame:
         if self._snake.hit_walls(self.walls_list) or self._snake.hit_itself():
             if self._snake.is_alive():
                 self._snake.start_new_live()
-                self._apple.set_random_position()
+                self._apple.set_random_position(self.walls_list)
             else:
                 self._print_text("Trò chơi kết thúc", RED, LARGE_FONT)
                 self.game_over = True
