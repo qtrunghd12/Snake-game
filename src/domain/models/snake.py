@@ -109,7 +109,7 @@ class Snake(Drawable):
         snake_gui.render_text("Chờ....", WHITE, LARGE_FONT)
         snake_gui.update_display_to_screen()
         snake_gui.wait(1500)  # Đợi 1.5 giây
-        
+
         self.body = self.start_body_coordinates()
         self.turn_right() 
 
